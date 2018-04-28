@@ -1,2 +1,2 @@
 # store
-project_store
+project_store - online store training project
