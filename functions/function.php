@@ -113,8 +113,14 @@ function renderProducts($products){
 
 function getPage ($id, $pages)
 {
-    $page = array();
     $page = $pages[$id];
     return $page;
 }
 
+
+function getProduct($products,$id) {
+
+    $product = $products[$id];
+    return $product;
+
+}
