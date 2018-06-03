@@ -13,7 +13,7 @@ require_once 'functions/function.php';
 <html>
     <head>
         <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Page Title1</title>
+        <title>Store.com: Online Shopping & more</title>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
         <link href="assets/css/style.css" rel="stylesheet" type="text/css" >
     </head>
@@ -25,11 +25,11 @@ require_once 'functions/function.php';
             </div>
 
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <?php require 'content/sidebar.php' ?> 
                 </div>
 
-                <div class="col-lg-8">
+                <div class="col-lg-9">
                     <?php require 'content/content.php' ?>
                 </div>
             </div>

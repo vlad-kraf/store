@@ -77,8 +77,8 @@ function renderProducts($products){
                 echo "<div class=col-lg-4>";
             
                     echo "<a>$product->created</a><br>";
-                    echo "<a href=$product->url><img src=images/image.png width=230 height=230 alt=$product->name></a><br>";
-                    echo "<a href=$product->url>$product->name</a><br>";   
+                    echo "<a href=?route=product&id=$product->id><img src=images/image.png width=230 height=230 alt=$product->name></a><br>";
+                    echo "<a href=?route=product&id=$product->id>$product->name</a><br>";
                 
                     echo  "<select>";
                             foreach ($product->variants as $var1){ 
@@ -92,8 +92,8 @@ function renderProducts($products){
                 echo "<div class=col-lg-4>";
             
                     echo "<a>$product->created</a><br>";
-                    echo "<a href=$product->url><img src=images/image.png width=230 height=230 alt=$product->name></a><br>";
-                    echo "<p><a href=$product->url>$product->name</a></p>";   
+                    echo "<a href=?route=product&id=$product->id><img src=images/image.png width=230 height=230 alt=$product->name></a><br>";
+                    echo "<p><a href=?route=product&id=$product->id>$product->name</a></p>";
                     
                     echo  "<select>";
                     echo "<option>".$product->variants[0]->price."</option>";
@@ -118,9 +118,26 @@ function getPage ($id, $pages)
 }
 
 
-function getProduct($products,$id) {
-
+function getProduct($products,$id)
+{
     $product = $products[$id];
     return $product;
+}
+
+if (isset ($_GET['buy'])) {
+    $product_id = intval($_GET['id']);
+    $amount = floatval($_GET['amount']);
+
+    $cart = array();
+    if(isset($_COOKIE['cart'])){
+        //$cart = unserialize($_COOKIE['cart']);
+    } else {
+        //$cart = asdadas;
+    }
+
+    setcookie('cart', unserialize($cart), time()+60*60*24),'/');
+
+
+
 
 }
