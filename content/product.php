@@ -1,4 +1,6 @@
-<?php $product = getProduct($products,$_GET['id']);
+<?php
+
+$product = getProduct($products,$_GET['id']);
 
 //print_r ($products);
 
@@ -23,7 +25,7 @@
             <div class="price">
                 <?php if(count($product->variants) > 1) :?>
                     <select name="variant">
-                        <?foreach ($product->variants as $variant) :?>
+                        <?php foreach ($product->variants as $variant) :?>
                             <option><?php echo $variant->name ?> <?php echo ceil($variant->price) ?> грн.</option>
                         <?php endforeach;?>
                     </select>

@@ -9,6 +9,9 @@ if (isset($_GET['route'])) {
     case 'product':
         include 'product.php';
         break;
+    case 'cart':
+       include 'cart.php';
+       break;
     }
 } else {
     include 'main.php';

@@ -7,7 +7,6 @@ $categories = unserialize($data_categories);
 $flag_cat = 1;
 function renderMenu($pages, $flag_cat) {
     echo $flag_cat ? "<ul class=horizontal>" : "<ul>";
-    //echo "<ul>";
         foreach($pages as $page) {
             if($page->menu_id == 1 && $page->visible) {
                 echo "<li>
@@ -15,9 +14,9 @@ function renderMenu($pages, $flag_cat) {
                     </li>";
             }
         }
+        echo "<li><a href=/?route=cart>Cart</a></li>";
     echo "</ul>";
 }
-
 
 
 function makeTree($categories) {
@@ -124,20 +123,36 @@ function getProduct($products,$id)
     return $product;
 }
 
+//Добавление в корзину
 if (isset ($_GET['buy'])) {
     $product_id = intval($_GET['id']);
     $amount = floatval($_GET['amount']);
 
-    $cart = array();
+  $cart = array();
     if(isset($_COOKIE['cart'])){
-        //$cart = unserialize($_COOKIE['cart']);
+        $cart = unserialize($_COOKIE['cart']);
+        $cart[$_GET['id']]= $_GET['amount'];
+
     } else {
-        //$cart = asdadas;
+        $cart[$_GET['id']]= $_GET['amount'];
     }
 
-    setcookie('cart', unserialize($cart), time()+60*60*24),'/');
+    setcookie('cart', serialize($cart), time()+60*60*24*30,'/');
+
+//print_r(unserialize($_COOKIE["cart"]));
+}
 
 
 
 
+//Последняя посещенная страница
+$referrer_1 = $_SERVER['SERVER_NAME'];
+$referrer_2 = $_SERVER['REQUEST_URI'];
+$time = date('Y-m-d H:i:s', $_SERVER['REQUEST_TIME']);
+$last_visit = "Last visited page: http://".$referrer_1.$referrer_2." at: ".$time;
+
+setcookie('last_visit', $last_visit, time()+60*60*24*30,'/');
+
+function getLastVisit (){
+    echo $_COOKIE['last_visit'];
 }

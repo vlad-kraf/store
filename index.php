@@ -6,7 +6,8 @@ require_once 'data/data_products.php';
 require_once 'data/data_categories.php';
 require_once 'functions/function.php';
 
-
+//$r = unserialize($data_products);
+//print_r($r);
 
 ?>
 <!DOCTYPE html>
