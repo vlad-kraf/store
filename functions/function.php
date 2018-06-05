@@ -148,7 +148,7 @@ if (isset ($_GET['wish'])) {
         $wish_list = array();
 
         if(isset($_COOKIE['wish'])) {
-            //echo 'iiiset';
+
                 $wish_list = unserialize($_COOKIE['wish']);
                     if (in_array($product_id, $wish_list)){
                         $key = array_search($product_id, $wish_list);
@@ -156,10 +156,13 @@ if (isset ($_GET['wish'])) {
                     } else {
                         $wish_list[] = $product_id;
                     }
-            }
-
-        setcookie('wish', serialize($wish_list), time()+60*60*24*30,'/');
+            } else {
+            $wish_list[] = $product_id;
+        }
+    setcookie('wish', serialize($wish_list), time()+60*60*24*30,'/');
 }
+
+
 
 
 
