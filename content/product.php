@@ -48,7 +48,7 @@ $product = getProduct($products,$_GET['id']);
             </div>
 
             <input type="submit" name="buy" value="Купить">
-
+            <input type="submit" name="wish" value="В избранное">
             </form>
         </div>
 

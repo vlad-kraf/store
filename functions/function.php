@@ -15,6 +15,7 @@ function renderMenu($pages, $flag_cat) {
             }
         }
         echo "<li><a href=/?route=cart>Cart</a></li>";
+        echo "<li><a href=/?route=wish_list>Избранное</a></li>";
     echo "</ul>";
 }
 
@@ -128,24 +129,41 @@ if (isset ($_GET['buy'])) {
     $product_id = intval($_GET['id']);
     $amount = floatval($_GET['amount']);
 
-  $cart = array();
-    if(isset($_COOKIE['cart'])){
+    $cart = array();
+    if (isset($_COOKIE['cart'])) {
         $cart = unserialize($_COOKIE['cart']);
-        $cart[$_GET['id']]= $_GET['amount'];
+        $cart[$_GET['id']] = $_GET['amount'];
 
     } else {
-        $cart[$_GET['id']]= $_GET['amount'];
+        $cart[$_GET['id']] = $_GET['amount'];
     }
 
-    setcookie('cart', serialize($cart), time()+60*60*24*30,'/');
+    setcookie('cart', serialize($cart), time() + 60 * 60 * 24 * 30, '/');
+}
 
-//print_r(unserialize($_COOKIE["cart"]));
+
+//Добавление в список желаний
+if (isset ($_GET['wish'])) {
+        $product_id = intval($_GET['id']);
+        $wish_list = array();
+
+        if(isset($_COOKIE['wish'])) {
+            //echo 'iiiset';
+                $wish_list = unserialize($_COOKIE['wish']);
+                    if (in_array($product_id, $wish_list)){
+                        $key = array_search($product_id, $wish_list);
+                        $wish_list[$key] = $product_id;
+                    } else {
+                        $wish_list[] = $product_id;
+                    }
+            }
+
+        setcookie('wish', serialize($wish_list), time()+60*60*24*30,'/');
 }
 
 
 
-
-//Последняя посещенная страница
+//Последняя послещенная страница
 $referrer_1 = $_SERVER['SERVER_NAME'];
 $referrer_2 = $_SERVER['REQUEST_URI'];
 $time = date('Y-m-d H:i:s', $_SERVER['REQUEST_TIME']);
@@ -156,3 +174,5 @@ setcookie('last_visit', $last_visit, time()+60*60*24*30,'/');
 function getLastVisit (){
     echo $_COOKIE['last_visit'];
 }
+
+//print_r(unserialize($_COOKIE["wish"]));

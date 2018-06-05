@@ -12,6 +12,9 @@ if (isset($_GET['route'])) {
     case 'cart':
        include 'cart.php';
        break;
+    case 'wish_list':
+       include 'wish_list.php';
+       break;
     }
 } else {
     include 'main.php';

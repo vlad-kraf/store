@@ -1,9 +1,9 @@
 <div class="col-lg-12">
-    <?php if (isset ($_COOKIE["cart"])): ?>
-        <?php $cart_products = unserialize($_COOKIE["cart"])?>
-        <h3><?php echo "В вашей корзине ".count($cart_products)." товаров" ?></h3>
-            <?php foreach ($cart_products as $key => $qty): ?>
-                <?php $product = getProduct($products,$key) ?>
+    <?php if (isset ($_COOKIE["wish"])): ?>
+        <?php $wish_list_products = unserialize($_COOKIE["wish"])?>
+        <h3><?php echo "В вашем списке желаний ".count($wish_list_products)." товаров" ?></h3>
+            <?php foreach ($wish_list_products as $value): ?>
+                <?php $product = getProduct($products,$value) ?>
                     <div class="row">
                         <div class="col-lg-2">
                             <div class="image text-left">
@@ -11,8 +11,7 @@
                             </div>
                         </div>
                         <div class="col-lg-10">
-                            <p><span style="color: blue;"><?php echo $product->name." -"?></span>
-                            <?php echo $qty."шт. -"?>
+                            <p><span style="color: blue;"><?php echo $product->name?></span>
                                         <?php foreach ($product->variants as $variant):?>
                                             <?php echo "Цена: ".$variant->price."грн."?>
                                         <?php endforeach;?>
@@ -23,6 +22,6 @@
                     </div>
         <?php endforeach; ?>
     <?php else: ?>
-        <h3><?php  echo 'Ваша корзина пуста'?></h3>
+        <h3><?php  echo 'Ваш список желаний пуст'?></h3>
     <?php endif ?>
 </div>
