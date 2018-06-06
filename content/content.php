@@ -15,6 +15,9 @@ if (isset($_GET['route'])) {
     case 'wish_list':
        include 'wish_list.php';
        break;
+    case 'register':
+       include 'register.php';
+       break;
     }
 } else {
     include 'main.php';
